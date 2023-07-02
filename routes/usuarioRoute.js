@@ -1,23 +1,17 @@
 import express from 'express'
-import {formularioLogin, formularioRegistro} from '../controllers/usuarioController.js'
+import {formularioLogin, formularioRegistro, formularioRegistroOlvidePassword,} from '../controllers/usuarioController.js'
 
 const router = express.Router()
 
 router.route('/login')
     .get(formularioLogin)
-    
-    .post(
-        (req, res) => {
-            res.json({ msg: 'Respuesta tipo Post' })
-        }
-    )
+
 router.route('/registro')
     .get(formularioRegistro)
-    .post(
-        (req, res) => {
-            res.json({ msg: 'Respuesta /auth/registro' })
-        }
-    )
+
+router.route('/olvide-password')
+    .get(formularioRegistroOlvidePassword)
+
 
 
 export default router

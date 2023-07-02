@@ -1,6 +1,4 @@
-// const express = require("express")
 import express from 'express'
-import pug from 'pug'
 import usuarioRoutes from './routes/usuarioRoute.js'
 
 const app = express()
