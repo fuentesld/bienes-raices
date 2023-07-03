@@ -17,4 +17,8 @@ block contenido
                         
                         input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Tu Password" type="password" name="password")
 
+                    div(class="flex items-center justify-between")
+                        a(href="/auth/registro" class="text-gray-500 text-xs") ¿No tienes Cuenta? Crea una
+                        a(href="/auth/olvide-password" class="text-gray-500 text-xs") Olvidé mi Password
+
                     input(type="submit" value="Iniciar Sesión" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold cursor-pointer")
