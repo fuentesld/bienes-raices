@@ -26,8 +26,16 @@ const formularioRegistro = (req, res) => {
             console.log(resultado.array())
             return res.render(
                 'auth/registro', 
-                {pagina: 'Crear Cuenta',
-            errores: resultado.array()})
+                {
+                    pagina: 'Crear Cuenta',
+                    errores: resultado.array(),
+                    usuario: {
+                        nombre: req.body.nombre,
+                        email: req.body.email,
+                        password: req.body.password,
+                    }
+                }
+            )
         }
         res.json(resultado.array())
 
