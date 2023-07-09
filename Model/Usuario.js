@@ -2,7 +2,9 @@ import { DataTypes } from 'sequelize'
 import bcrypt from 'bcrypt'
 import db from '../config/db.js'
 
-const Usuario = db.define('usuario', {
+const Usuario = db.define(
+    'usuario', 
+    {
         nombre: {
             type: DataTypes.STRING,
             allowNull: false,

@@ -23,7 +23,7 @@ app.use(express.static('public'))
 
 // Routing
 app.use('/auth', usuarioRoutes)
-
+console.log('antes servidor');
 const PORT = process.env.BACKEND_PORT || 3000
 app.listen(
     PORT, 
