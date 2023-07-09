@@ -2,17 +2,20 @@ import express from 'express'
 import usuarioRoutes from './routes/usuarioRoute.js'
 import db from './config/db.js'
 
-const app = express()
-
 // DB conection
 try {
     await db.authenticate()
+    db.sync()
     console.log(`Conexión correcta a DB ${process.env.DB_NAME}`);
 } catch (error) {
     console.log(error);
 }
 
-const port = 3000
+const app = express()
+
+// Habilitar lectura de formularios
+app.use(express.urlencoded({extended:true}))
+
 
 // Habilitar Pug
 app.set('view engine', 'pug')
@@ -23,7 +26,7 @@ app.use(express.static('public'))
 
 // Routing
 app.use('/auth', usuarioRoutes)
-console.log('antes servidor');
+
 const PORT = process.env.BACKEND_PORT || 3000
 app.listen(
     PORT, 
