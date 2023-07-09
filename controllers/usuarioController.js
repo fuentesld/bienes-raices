@@ -1,5 +1,6 @@
 import {check, validationResult } from 'express-validator'
 import Usuario from '../Model/Usuario.js'
+import e from 'express'
 
 const formularioLogin = (req, res) => { 
     res.render(
@@ -32,11 +33,35 @@ const formularioRegistro = (req, res) => {
                     usuario: {
                         nombre: req.body.nombre,
                         email: req.body.email,
-                        password: req.body.password,
                     }
                 }
             )
         }
+
+        // Check if email exist in DB
+        const {nombre, email, password,} = req.body 
+        const existeUsuario = await Usuario.findOne({where: {email}})
+        if (existeUsuario) {
+            return res.render(
+                'auth/registro', 
+                {
+                    pagina: 'Crear Cuenta',
+                    errores: [{msg:'El usuario ya está registrado'}],
+                    usuario: {
+                        nombre,
+                        email,
+                    }
+                }
+            )
+        }
+
+        // store user in DB
+        await Usuario.create({
+            nombre,
+            email,
+            password,
+            token:123,
+        })
         res.json(resultado.array())
 
 
