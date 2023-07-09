@@ -1,6 +1,7 @@
 import {check, validationResult } from 'express-validator'
+
 import Usuario from '../Model/Usuario.js'
-import e from 'express'
+import { generarId } from '../helpers/tokens.js'
 
 const formularioLogin = (req, res) => { 
     res.render(
@@ -56,19 +57,14 @@ const formularioRegistro = (req, res) => {
         }
 
         // store user in DB
+        console.log(generarId());
         await Usuario.create({
             nombre,
             email,
             password,
-            token:123,
+            token: generarId(),
         })
-        res.json(resultado.array())
 
-
-
-        const usuario = await Usuario.create(req.body)  
-        // res.json(usuario)  
-    
  }
 
 const formularioRegistroOlvidePassword = (req, res) => { 
