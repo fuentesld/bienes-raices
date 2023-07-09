@@ -22,11 +22,13 @@ const formularioRegistro = (req, res) => {
         await check('repetir_password').equals(req.body.password).withMessage('Los passwords no son iguales').run(req)
                 
         let resultado = validationResult(req)
-        // if (!resultado){
-        //     return res.render(
-        //         'auth/registro'),
-        //         {errores: resultado.array()}
-        // }
+        if (!resultado.isEmpty()){
+            console.log(resultado.array())
+            return res.render(
+                'auth/registro', 
+                {pagina: 'Crear Cuenta',
+            errores: resultado.array()})
+        }
         res.json(resultado.array())
 
 
