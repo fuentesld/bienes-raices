@@ -65,7 +65,14 @@ const formularioRegistro = (req, res) => {
             token: generarId(),
         })
 
- }
+        // Show confirm message
+        res.render('templates/mensaje', 
+        {
+            pagina: 'Cuenta creada correctamente',
+            mensaje:'Hemos enviado un Email de Confirmacion al correo registrado, presiona en el enlace para activar tu cuenta'
+        })
+
+}
 
 const formularioRegistroOlvidePassword = (req, res) => { 
     res.render(
