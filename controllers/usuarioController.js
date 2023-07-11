@@ -82,8 +82,8 @@ const formularioRegistro = (req, res) => {
 }
 
 const confirmar = async (req, res) => { 
-    const {token} = req.params.token
-
+    const {token} = req.params
+    console.log(`token=>${token}<=`);
     // Verify if token is valid
     const usuario = await Usuario.findOne({where: {token}})
 
@@ -98,9 +98,22 @@ const confirmar = async (req, res) => {
             )
     }
 
+    // confirm account
+    usuario.token = null,
+    usuario.confirmado = true
+    await usuario.save()
+    res.render(
+        'auth/confirmar-cuenta',
+        {
+            pagina: 'Cuenta Confirmada',
+            mensaje: 'La cuenta se confirmó correctamente',
+            error: false,
+        }
+    )
 
 
- }
+
+}
 
 const formularioRegistroOlvidePassword = (req, res) => { 
     res.render(
