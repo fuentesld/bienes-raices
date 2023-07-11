@@ -1,5 +1,8 @@
 import express from 'express'
-import usuarioRoutes from './routes/usuarioRoute.js'
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser'
+
+import usuarioRoutes from './routes/usuarioRoutes.js'
 import db from './config/db.js'
 
 // DB conection
@@ -13,8 +16,12 @@ try {
 
 const app = express()
 
+app.use(cookieParser())
+const csrfProtect = csrf({ cookie: true })
+// app.use(csrf({cookie: true}))
+
 // Habilitar lectura de formularios
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true})) //true
 
 
 // Habilitar Pug
@@ -25,7 +32,7 @@ app.set('views', './views')
 app.use(express.static('public'))
 
 // Routing
-app.use('/auth', usuarioRoutes)
+app.use('/auth', csrfProtect, usuarioRoutes)
 
 const PORT = process.env.BACKEND_PORT || 3000
 app.listen(
