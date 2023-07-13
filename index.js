@@ -3,6 +3,7 @@ import csrf from 'csurf'
 import cookieParser from 'cookie-parser'
 
 import usuarioRoutes from './routes/usuarioRoutes.js'
+import propiedadRoutes from './routes/propiedadRoutes.js'
 import db from './config/db.js'
 
 // DB conection
@@ -33,6 +34,7 @@ app.use(express.static('public'))
 
 // Routing
 app.use('/auth', csrfProtect, usuarioRoutes)
+app.use('/', propiedadRoutes)
 
 const PORT = process.env.BACKEND_PORT || 3000
 app.listen(

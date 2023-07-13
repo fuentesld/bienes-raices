@@ -73,7 +73,7 @@ const autenticar = async (req, res) => {
 
     //  user Authenticate
     const token = generarJWT(usuario.id)
-    console.log(token);
+
     // Store token in cookie
     return res.cookie(
         '_token', 
