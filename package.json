@@ -8,7 +8,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node ./index.js",
 		"server": "nodemon ./index.js",
-		"css": "postcss public/css/tailwind.css -o public/css/app.css --watch"
+		"css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
+		"js": "webpack --watch",
+        "dev": "concurrently \"npm run css\" \"npm run js\""
 	},
 	"keywords": [],
 	"author": "",
@@ -24,10 +26,13 @@
 		"mysql2": "^3.4.3",
 		"nodemailer": "^6.9.3",
 		"pug": "^3.0.2",
-		"sequelize": "^6.32.1"
+		"sequelize": "^6.32.1",
+		"webpack": "^5.88.1",
+		"webpack-cli": "^5.1.4"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.4.14",
+		"concurrently": "^8.2.0",
 		"nodemon": "^2.0.22",
 		"postcss": "^8.4.24",
 		"postcss-cli": "^10.1.0",
